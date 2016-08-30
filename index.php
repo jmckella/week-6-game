@@ -1,1 +1,1 @@
-<?php include_once("herokutest.html");?> 
+<?php include_once("HW6-Giphy.html");?> 
