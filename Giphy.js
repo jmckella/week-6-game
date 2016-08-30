@@ -1,10 +1,10 @@
  // Initial array of movies
-    var Celebrities = ['Lebron James', 'Matt Damon', 'Kim Kardashian', 'Kanye West'];
+    var celebrities = ['Lebron James', 'Matt Damon', 'Kim Kardashian', 'Kanye West'];
 
     // ========================================================
 
     // displayMovieInfo function now re-renders the HTML to display the appropriate content. 
-    function displayMovieInfo(){
+    function displayCelebrityInfo(){
 
         var celebrity = $(this).attr('data-name');
         var queryURL = "http://api.giphy.com/v1/gifs/<gif_id>" + sport + "?api_key=dc6zaTOxFJmzC";
@@ -13,7 +13,7 @@
         $.ajax({url: queryURL, method: 'GET'}).done(function(response) {
 
             // Creates a generic div to hold the movie
-            var movieDiv = $('<div class="movie">');
+           
 
             // Retrieves the Rating Data
             var rating = response.Rated;
@@ -22,34 +22,14 @@
             var pOne = $('<p>').text( "Rating: " + rating);
 
             // Displays the rrating
-            movieDiv.append(pOne);
-
-            // Retrieves the release year
-            var released = response.Released;
-
-            // Creates an element to hold the release year
-            var pTwo = $('<p>').text( "Released: " + released);
-
-            // Displays the release year
-            movieDiv.append(pTwo);
-
-            // Retrieves the plot
-            var plot = response.Plot;
-
-            // Creates an element to hold the plot
-            var pThree = $('<p>').text( "Plot: " + plot);
-
-            // Appends the plot
-            movieDiv.append(pThree);
-
             // Creates an element to hold the image 
             var image = $('<img>').attr("src", response.Poster);
 
             // Appends the image
-            movieDiv.append(image);
+            celebrity.append(image);
 
             // Puts the entire Movie above the previous movies.
-            $('#moviesView').prepend(movieDiv);
+            $('#celebrity').prepend(celebrityDiv);
         });
 
     }
@@ -63,15 +43,15 @@
         $('#celebrityButtons').empty();
 
         // Loops through the array of movies
-        for (var i = 0; i < movies.length; i++){
+        for (var i = 0; i < celebrities.length; i++){
 
             // Then dynamicaly generates buttons for each movie in the array
 
             // Note the jQUery syntax here... 
             var a = $('<button>') // This code $('<button>') is all jQuery needs to create the beginning and end tag. (<button></button>)
-            a.addClass('movie'); // Added a class 
-            a.attr('data-name', movies[i]); // Added a data-attribute
-            a.text(movies[i]); // Provided the initial button text
+            a.addClass('celebrity'); // Added a class 
+            a.attr('data-name', celebrities[i]); // Added a data-attribute
+            a.text(celebrities[i]); // Provided the initial button text
             $('#celebrityButtons').append(a); // Added the button to the HTML
         }
     }
@@ -79,13 +59,13 @@
     // ========================================================
 
     // This function handles events where one button is clicked
-    $('#addMovie').on('click', function(){
+    $('#addCelebrity').on('click', function(){
 
         // This line of code will grab the input from the textbox
-        var celebrities = $('#celebrity-input').val().trim();
+        var celebrity_text = $('#celebrity-input').val().trim();
 
         // The movie from the textbox is then added to our array
-        celebrity.push(movie);
+        celebrity_text.push(movie);
         
         // Our array then runs which handles the processing of our movie array
         renderButtons();
@@ -97,7 +77,7 @@
     // ========================================================
 
     // Generic function for displaying the movieInfo
-    $(document).on('click', '.movie', displayMovieInfo);
+    $(document).on('click', '.celebrity_text', displayCelebrityInfo);
 
 
     // ========================================================
